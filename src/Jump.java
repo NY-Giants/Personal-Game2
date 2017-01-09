@@ -14,7 +14,7 @@ Jump(){
 	frame = new JFrame();
 	frame.setVisible(true);
 	frame.setSize(width, height);
-	
+	frame.add(Gpanel);
 	
 	
 }
