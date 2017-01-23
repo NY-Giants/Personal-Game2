@@ -15,7 +15,7 @@ Jump(){
 	frame.setVisible(true);
 	frame.setSize(width, height);
 	frame.add(Gpanel);
-	
+	frame.addKeyListener(Gpanel);
 	
 }
 void setup(){

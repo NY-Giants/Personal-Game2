@@ -15,6 +15,6 @@ void update(){
 	
 }
 void draw(Graphics z){
-	z.fillRect(x, y, width, height);
+	
 }
 }
