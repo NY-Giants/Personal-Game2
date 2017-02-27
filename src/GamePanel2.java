@@ -5,7 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -17,13 +19,21 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 	int currentState = MENU_STATE;
 	Block Blocky;
 	Font font;
-
+	BufferedImage gamebackground;
+	int imageHeight = 0;
 	GamePanel2() {
 		timer = new Timer(1000 / 60, this);
 		Blocky = new Block(50, 50);
 		Blocky.x = 250;
 		Blocky.y = 400;
 		font = new Font("Arial", Font.PLAIN, 48);
+		try{
+			gamebackground = ImageIO.read(this.getClass().getResourceAsStream("Game Background.jpg"));
+			imageHeight = gamebackground.getHeight();
+		}
+		catch (Exception e) {
+			System.out.println("Background Image not found");
+		}
 	}
 
 	@Override

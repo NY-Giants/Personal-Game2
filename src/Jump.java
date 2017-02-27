@@ -20,7 +20,7 @@ Jump(){
 }
 void setup(){
 	frame.add(Gpanel);
-	frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
+	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	Gpanel.startGame();
 }
 }
