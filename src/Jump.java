@@ -2,25 +2,25 @@ import javax.swing.JFrame;
 
 public class Jump {
 	JFrame frame;
-	static final int width = 1000;
+	static final int width = 500;
 	static final int height = 800;
-	GamePanel2 Gpanel = new GamePanel2();
+	GamePanel2 gPanel;
 	public static void main(String[] args) {
 	Jump jump = new Jump();
 	jump.setup();
 	}
 Jump(){
-	Gpanel = new GamePanel2();
+	gPanel = new GamePanel2(width, height);
 	frame = new JFrame();
 	frame.setVisible(true);
 	frame.setSize(width, height);
-	frame.add(Gpanel);
-	frame.addKeyListener(Gpanel);
+	frame.add(gPanel);
+	frame.addKeyListener(gPanel);
 	
 }
 void setup(){
-	frame.add(Gpanel);
+	frame.add(gPanel);
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	Gpanel.startGame();
+	gPanel.startGame();
 }
 }

@@ -21,7 +21,12 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 	Font font;
 	BufferedImage gamebackground;
 	int imageHeight = 0;
-	GamePanel2() {
+	int frameWidth = 0;
+	int frameHeight = 0;
+	int y1 = 0;
+	int y2 = 0;
+	int scrollSpeed = 5;
+	GamePanel2(int fWidth, int fHeight) {
 		timer = new Timer(1000 / 60, this);
 		Blocky = new Block(50, 50);
 		Blocky.x = 250;
@@ -34,6 +39,8 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 		catch (Exception e) {
 			System.out.println("Background Image not found");
 		}
+		frameHeight = fHeight;
+		frameWidth = fWidth;
 	}
 
 	@Override
@@ -44,8 +51,10 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 			updateGameState();
 		} else if (currentState == END_STATE) {
 			updateEndState();
-		}
+		}               
+		moveBackground(); 
 		repaint();
+		
 	}
 
 	void startGame() {
@@ -87,11 +96,12 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 	}
 
 	void drawGameState(Graphics z) {
-		z.setColor(Color.BLACK);
-		z.fillRect(0, 0, Jump.width, Jump.height);
+		z.drawImage(gamebackground, 0, 0, frameWidth, frameHeight, 0, y1, frameWidth, y2, this);
+		//z.setColor(Color.BLACK);
+		//z.fillRect(0, 0, Jump.width, Jump.height);
 		// z.setFont();
 		Blocky.draw(z);
-
+		
 	}
 
 	void drawEndState(Graphics z) {
@@ -139,6 +149,18 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 		}
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			Blocky.leftkey = false;
+		}
+	}
+	void moveBackground(){
+		System.out.println("move");
+		if(y2 >= imageHeight){
+			y1 = 0;
+			y2 = frameHeight;
+			
+		}
+		else{
+			y1 += scrollSpeed;
+			y2 += scrollSpeed;	
 		}
 	}
 }
