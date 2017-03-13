@@ -31,7 +31,7 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 		Blocky = new Block(50, 50);
 		Blocky.x = 250;
 		Blocky.y = 400;
-		font = new Font("Arial", Font.PLAIN, 48);
+		font = new Font("Arial", Font.PLAIN, 36);
 		try{
 			gamebackground = ImageIO.read(this.getClass().getResourceAsStream("Game Background.jpg"));
 			imageHeight = gamebackground.getHeight();
@@ -90,16 +90,13 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 		z.fillRect(0, 0, Jump.width, Jump.height);
 		z.setFont(font);
 		z.setColor(Color.BLUE);
-		z.drawString("JUMP", 400, 100);
+		z.drawString("JUMP", 200, 100);
 		z.setColor(Color.BLUE);
-		z.drawString("Press Enter To Start", 250, 500);
+		z.drawString("Press Enter To Start", 125, 500);
 	}
 
 	void drawGameState(Graphics z) {
 		z.drawImage(gamebackground, 0, 0, frameWidth, frameHeight, 0, y1, frameWidth, y2, this);
-		//z.setColor(Color.BLACK);
-		//z.fillRect(0, 0, Jump.width, Jump.height);
-		// z.setFont();
 		Blocky.draw(z);
 		
 	}
@@ -108,17 +105,17 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 		z.setColor(Color.LIGHT_GRAY);
 		z.fillRect(0, 0, Jump.width, Jump.height);
 		z.setFont(font);
-		z.drawString("JUMP", 400, 100);
+		z.drawString("JUMP", 200, 100);
 		z.setColor(Color.BLUE);
-		z.drawString("Game Over", 400, 100);
+		z.drawString("Game Over", 200, 100);
 		z.setColor(Color.BLUE);
-		z.drawString("Press Enter To Restart", 250, 500);
+		z.drawString("Press Enter To Restart", 100, 500);
 
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
@@ -152,7 +149,7 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 		}
 	}
 	void moveBackground(){
-		System.out.println("move");
+	
 		if(y2 >= imageHeight){
 			y1 = 0;
 			y2 = frameHeight;
@@ -162,5 +159,8 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 			y1 += scrollSpeed;
 			y2 += scrollSpeed;	
 		}
+	}
+	void platform(){
+		
 	}
 }
