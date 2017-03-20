@@ -54,6 +54,7 @@ public class Block extends GameObject2 {
 	void draw(Graphics z) {
 		z.setColor(Color.BLUE);
 		z.fillRect(x, y, width, height);
+		z.drawRect(x, y, width, height);
 		super.draw(z);
 
 	}

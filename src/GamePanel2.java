@@ -17,8 +17,9 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 	final int GAME_STATE = 1;
 	final int END_STATE = 2;
 	int currentState = MENU_STATE;
-	Block Blocky;
+	Block blocky;
 	Font font;
+	Platform p1;
 	BufferedImage gamebackground;
 	int imageHeight = 0;
 	int frameWidth = 0;
@@ -28,9 +29,8 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 	int scrollSpeed = 5;
 	GamePanel2(int fWidth, int fHeight) {
 		timer = new Timer(1000 / 60, this);
-		Blocky = new Block(50, 50);
-		Blocky.x = 250;
-		Blocky.y = 400;
+		blocky = new Block(250, 400);
+		p1 = new Platform(200, 200);
 		font = new Font("Arial", Font.PLAIN, 36);
 		try{
 			gamebackground = ImageIO.read(this.getClass().getResourceAsStream("Game Background.jpg"));
@@ -73,7 +73,7 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 	}
 
 	void updateGameState() {
-		Blocky.update();
+		blocky.update();
 
 	}
 
@@ -97,7 +97,9 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 
 	void drawGameState(Graphics z) {
 		z.drawImage(gamebackground, 0, 0, frameWidth, frameHeight, 0, y1, frameWidth, y2, this);
-		Blocky.draw(z);
+		blocky.draw(z);
+		p1.draw(z);
+		
 		
 	}
 
@@ -129,23 +131,23 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 			}
 		}
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			Blocky.rightkey = true;
+			blocky.rightkey = true;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			Blocky.leftkey = true;
+			blocky.leftkey = true;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-			Blocky.jump();
+			blocky.jump();
 		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			Blocky.rightkey = false;
+			blocky.rightkey = false;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			Blocky.leftkey = false;
+			blocky.leftkey = false;
 		}
 	}
 	void moveBackground(){
@@ -158,6 +160,12 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 		else{
 			y1 += scrollSpeed;
 			y2 += scrollSpeed;	
+		}
+		if(p1.y < 0){
+			p1.y += scrollSpeed;
+		}
+		else{
+			p1.isAlive = false;
 		}
 	}
 	void platform(){
