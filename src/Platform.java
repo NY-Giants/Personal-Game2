@@ -21,14 +21,13 @@ public class Platform extends GameObject2 {
 
 	void update() {
 		velocity += gravity;
-		y += velocity;
+		//y += velocity;
 		if (y > ground) {
 			y = ground;		
+			System.out.println("on ground");
 			velocity = 0;
-		} else {
-
-		}
-
+		} 
+		super.update();
 	}
 
 	void draw(Graphics z) {

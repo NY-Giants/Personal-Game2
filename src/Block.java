@@ -32,7 +32,7 @@ public class Block extends GameObject2 {
 	}
 
 	void update() {
-
+		
 		if (rightkey) {
 			x++;
 		}
@@ -48,7 +48,7 @@ public class Block extends GameObject2 {
 		} else {
 			canJump = false;
 		}
-
+		super.update();
 	}
 
 	void draw(Graphics z) {
@@ -63,7 +63,7 @@ public class Block extends GameObject2 {
 		if (canJump) {
 
 			velocity -= jumpPower;
-			System.out.println(velocity);
+		
 		}
 	}
 }

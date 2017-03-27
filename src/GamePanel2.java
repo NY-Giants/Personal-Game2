@@ -20,6 +20,9 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 	Block blocky;
 	Font font;
 	Platform p1;
+	Platform p2;
+	Platform p3;
+	Platform p4;
 	BufferedImage gamebackground;
 	int imageHeight = 0;
 	int frameWidth = 0;
@@ -30,14 +33,17 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 	GamePanel2(int fWidth, int fHeight) {
 		timer = new Timer(1000 / 60, this);
 		blocky = new Block(250, 400);
-		p1 = new Platform(200, 200);
+		p1 = new Platform(200, 0);
+		p2 = new Platform (150, 250);
+		p3 = new Platform (100, 450);
+		p4 = new Platform (300, 600);
 		font = new Font("Arial", Font.PLAIN, 36);
 		try{
 			gamebackground = ImageIO.read(this.getClass().getResourceAsStream("Game Background.jpg"));
 			imageHeight = gamebackground.getHeight();
 		}
 		catch (Exception e) {
-			System.out.println("Background Image not found");
+			System.out.println("Background Image not found"); 
 		}
 		frameHeight = fHeight;
 		frameWidth = fWidth;
@@ -74,7 +80,14 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 
 	void updateGameState() {
 		blocky.update();
-
+		p4.update();
+		if(blocky.collisionBox.intersects(p1.collisionBox)){
+			System.out.println("Blocky Width" + blocky.collisionBox.getWidth());
+			System.out.println("p4 Width" + p4.collisionBox.getWidth());
+		}
+		else{
+			
+		}
 	}
 
 	void updateMenuState() {
@@ -98,7 +111,15 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 	void drawGameState(Graphics z) {
 		z.drawImage(gamebackground, 0, 0, frameWidth, frameHeight, 0, y1, frameWidth, y2, this);
 		blocky.draw(z);
+		z.drawRect(blocky.collisionBox.x,
+				blocky.collisionBox.y,
+				blocky.collisionBox.width,
+				blocky.collisionBox.height);
+		
 		p1.draw(z);
+		p2.draw(z);
+		p3.draw(z);
+		p4.draw(z);
 		
 		
 	}
@@ -167,8 +188,5 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 		else{
 			p1.isAlive = false;
 		}
-	}
-	void platform(){
-		
 	}
 }
