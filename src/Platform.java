@@ -10,7 +10,7 @@ public class Platform extends GameObject2 {
 	Platform(int x, int y) {
 		super();
 		this.x = x;
-		width = 65;
+		width = 60;
 		height = 20;
 		this.y = y;
 		speed = 10;

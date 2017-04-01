@@ -13,7 +13,7 @@ public class Block extends GameObject2 {
 	int gravity;
 	int jumpPower;
 	int ground;
-
+	
 	Block(int x, int y) {
 		super();
 		jumpPower = 20;

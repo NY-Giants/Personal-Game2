@@ -33,9 +33,9 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 	GamePanel2(int fWidth, int fHeight) {
 		timer = new Timer(1000 / 60, this);
 		blocky = new Block(250, 400);
-		p1 = new Platform(200, 0);
+		p1 = new Platform(200, 100);
 		p2 = new Platform (150, 250);
-		p3 = new Platform (100, 450);
+		p3 = new Platform (165, 450);
 		p4 = new Platform (300, 600);
 		font = new Font("Arial", Font.PLAIN, 36);
 		try{
@@ -81,9 +81,12 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 	void updateGameState() {
 		blocky.update();
 		p4.update();
-		if(blocky.collisionBox.intersects(p1.collisionBox)){
+		if(blocky.collisionBox.intersects(p4.collisionBox)){
 			System.out.println("Blocky Width" + blocky.collisionBox.getWidth());
 			System.out.println("p4 Width" + p4.collisionBox.getWidth());
+			blocky.y = p4.y;
+			blocky.y = p4.y;     
+			
 		}
 		else{
 			
