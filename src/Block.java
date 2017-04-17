@@ -8,18 +8,20 @@ public class Block extends GameObject2 {
 	static boolean rightkey;
 	static boolean leftkey;
 	static boolean space;
+	static int size = 50;
 	boolean canJump = true;
+	boolean applyGravity = false;
 	int velocity;
 	int gravity;
 	int jumpPower;
 	int ground;
-	
+
 	Block(int x, int y) {
 		super();
 		jumpPower = 20;
 		this.x = x;
-		width = 35;
-		height = 35;
+		width = Block.size;
+		height = Block.size;
 		this.y = y;
 		speed = 10;
 		upkey = false;
@@ -28,26 +30,31 @@ public class Block extends GameObject2 {
 		leftkey = false;
 		gravity = 1;
 		velocity = 0;
-		ground = 725;
+		ground = y;
+
 	}
 
 	void update() {
-		
+
 		if (rightkey) {
 			x++;
 		}
 		if (leftkey) {
 			x--;
 		}
-		velocity += gravity;
-		y += velocity;
+		if (applyGravity == true) {
+			velocity += gravity;
+			y += velocity;
+		}
 		if (y > ground) {
 			y = ground;
+			applyGravity = false;
 			canJump = true;
 			velocity = 0;
 		} else {
 			canJump = false;
 		}
+
 		super.update();
 	}
 
@@ -61,9 +68,10 @@ public class Block extends GameObject2 {
 
 	void jump() {
 		if (canJump) {
-
+			applyGravity = true;
 			velocity -= jumpPower;
-		
+			System.out.println(applyGravity);
+			System.out.println(canJump);
 		}
 	}
 }
