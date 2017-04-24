@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 public class Platform extends GameObject2 {
 	int speed;
@@ -7,6 +8,7 @@ public class Platform extends GameObject2 {
 	int gravity;
 	int ground;
 	boolean isAlive = true;
+
 	Platform(int x, int y) {
 		super();
 		this.x = x;
@@ -17,17 +19,19 @@ public class Platform extends GameObject2 {
 		gravity = 1;
 		velocity = 0;
 		ground = 725;
+		collisionBox = new Rectangle(x, y, width, 1);
 	}
 
 	void update() {
 		velocity += gravity;
-		//y += velocity;
+		// y += velocity;
 		if (y > ground) {
-			y = ground;		
+			y = ground;
 			System.out.println("on ground");
 			velocity = 0;
-		} 
-		super.update();
+
+		}
+		collisionBox.setBounds(x, y, width, 1);
 	}
 
 	void draw(Graphics z) {
@@ -38,4 +42,4 @@ public class Platform extends GameObject2 {
 
 	}
 
-	}
+}

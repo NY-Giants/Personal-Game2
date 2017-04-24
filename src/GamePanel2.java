@@ -33,7 +33,7 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 
 	GamePanel2(int fWidth, int fHeight) {
 		timer = new Timer(1000 / 60, this);
-		blocky = new Block(fWidth / 2, fHeight - Block.size);
+		blocky = new Block(fWidth / 2, 725);
 		p1 = new Platform(200, 100);
 		p2 = new Platform(150, 250);
 		p3 = new Platform(165, 450);
@@ -47,7 +47,6 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 		}
 		frameHeight = fHeight;
 		frameWidth = fWidth;
-
 	}
 
 	@Override
@@ -80,16 +79,18 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 	}
 
 	void updateGameState() {
-		blocky.update();
 		p4.update();
 		if (blocky.collisionBox.intersects(p4.collisionBox)) {
 			System.out.println("Blocky Width" + blocky.collisionBox.getWidth());
 			System.out.println("p4 Width" + p4.collisionBox.getWidth());
 			blocky.y = p4.y - blocky.height;
-			blocky.applyGravity = false;
-			blocky.update();
-		}
+			blocky.setApplyGravity(false);
 
+		} else {
+			blocky.setApplyGravity(true);
+
+		}
+		blocky.update();
 	}
 
 	void updateMenuState() {
@@ -149,10 +150,10 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 			}
 		}
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			blocky.rightkey = true;
+			Block.rightkey = true;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			blocky.leftkey = true;
+			Block.leftkey = true;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			blocky.jump();
@@ -162,10 +163,10 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			blocky.rightkey = false;
+			Block.rightkey = false;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			blocky.leftkey = false;
+			Block.leftkey = false;
 		}
 	}
 

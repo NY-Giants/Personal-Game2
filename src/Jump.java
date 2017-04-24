@@ -18,7 +18,6 @@ public class Jump {
 		frame.setSize(width, height);
 		frame.add(gPanel);
 		frame.addKeyListener(gPanel);
-
 	}
 
 	void setup() {
