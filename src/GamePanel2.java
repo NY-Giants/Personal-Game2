@@ -81,8 +81,6 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 	void updateGameState() {
 		p4.update();
 		if (blocky.collisionBox.intersects(p4.collisionBox)) {
-			System.out.println("Blocky Width" + blocky.collisionBox.getWidth());
-			System.out.println("p4 Width" + p4.collisionBox.getWidth());
 			blocky.y = p4.y - blocky.height;
 			blocky.setApplyGravity(false);
 

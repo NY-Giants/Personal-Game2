@@ -91,11 +91,13 @@ public class Block extends GameObject2 {
 		if (leftkey) {
 			x--;
 		}
-		if (applyGravity == true) {
+		if (applyGravity) {
 			velocity += gravity;
 			y += velocity;
+		} else {
 
 		}
+
 		if (y >= ground) {
 			y = ground;
 			applyGravity = false;
@@ -104,8 +106,7 @@ public class Block extends GameObject2 {
 		} else {
 			canJump = false;
 		}
-
-		super.update();
+		collisionBox.setBounds(x, y + height - 1, width, 2);
 	}
 
 	void draw(Graphics z) {
