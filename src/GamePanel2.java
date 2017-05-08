@@ -23,6 +23,7 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 	Platform p2;
 	Platform p3;
 	Platform p4;
+	Platform p5;
 	BufferedImage gamebackground;
 	int imageHeight = 0;
 	int frameWidth = 0;
@@ -38,6 +39,7 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 		p2 = new Platform(150, 250);
 		p3 = new Platform(165, 450);
 		p4 = new Platform(300, 600);
+		p5 = new Platform(400, 400);
 		font = new Font("Arial", Font.PLAIN, 36);
 		try {
 			gamebackground = ImageIO.read(this.getClass().getResourceAsStream("Game Background.jpg"));
@@ -118,6 +120,7 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 		p2.draw(z);
 		p3.draw(z);
 		p4.draw(z);
+		p5.draw(z);
 
 	}
 
