@@ -66,7 +66,7 @@ public class Block extends GameObject2 {
 
 	Block(int x, int y) {
 		super();
-		jumpPower = 20;
+		jumpPower = -20;
 		this.x = x;
 		width = Block.size;
 		height = Block.size;
@@ -91,11 +91,9 @@ public class Block extends GameObject2 {
 		if (leftkey) {
 			x--;
 		}
+		y += velocity;
 		if (applyGravity) {
 			velocity += gravity;
-			y += velocity;
-		} else {
-
 		}
 
 		if (y >= ground) {
@@ -103,8 +101,6 @@ public class Block extends GameObject2 {
 			applyGravity = false;
 			canJump = true;
 			velocity = 0;
-		} else {
-			canJump = false;
 		}
 		collisionBox.setBounds(x, y + height - 1, width, 2);
 	}
@@ -118,11 +114,12 @@ public class Block extends GameObject2 {
 	}
 
 	void jump() {
-		System.out.println(canJump);
+		System.out.println(canJump + " canJump ");
 		if (canJump) {
 			applyGravity = true;
-			velocity -= jumpPower;
+			velocity = jumpPower;
 
 		}
+		System.out.println(velocity + " velocity ");
 	}
 }

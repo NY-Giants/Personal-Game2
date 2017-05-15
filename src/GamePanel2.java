@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
@@ -24,7 +25,9 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 	Platform p3;
 	Platform p4;
 	Platform p5;
-	BufferedImage gamebackground;
+	public static BufferedImage gamebackground;
+	public static BufferedImage AlienImg;
+	public static BufferedImage RubyImg;
 	int imageHeight = 0;
 	int frameWidth = 0;
 	int frameHeight = 0;
@@ -44,6 +47,9 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 		try {
 			gamebackground = ImageIO.read(this.getClass().getResourceAsStream("Game Background.jpg"));
 			imageHeight = gamebackground.getHeight();
+			AlienImg = ImageIO.read(this.getClass().getResourceAsStream("Alien.png"));
+			RubyImg = ImageIO.read(this.getClass().getResourceAsStream("Bonus Point.png"));
+	
 		} catch (Exception e) {
 			System.out.println("Background Image not found");
 		}
@@ -81,16 +87,19 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 	}
 
 	void updateGameState() {
+		blocky.update();
 		p4.update();
 		if (blocky.collisionBox.intersects(p4.collisionBox)) {
 			blocky.y = p4.y - blocky.height;
 			blocky.setApplyGravity(false);
+				blocky.setVelocity(0);
+			blocky.setCanJump(true);
+			
 
 		} else {
 			blocky.setApplyGravity(true);
 
 		}
-		blocky.update();
 	}
 
 	void updateMenuState() {
