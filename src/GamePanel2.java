@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
@@ -37,7 +36,7 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 
 	GamePanel2(int fWidth, int fHeight) {
 		timer = new Timer(1000 / 60, this);
-		blocky = new Block(fWidth / 2, 725);
+		blocky = new Block(fWidth / 2, 725 - 32);
 		p1 = new Platform(200, 100);
 		p2 = new Platform(150, 250);
 		p3 = new Platform(165, 450);
@@ -49,7 +48,7 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 			imageHeight = gamebackground.getHeight();
 			AlienImg = ImageIO.read(this.getClass().getResourceAsStream("Alien.png"));
 			RubyImg = ImageIO.read(this.getClass().getResourceAsStream("Bonus Point.png"));
-	
+
 		} catch (Exception e) {
 			System.out.println("Background Image not found");
 		}
@@ -90,16 +89,16 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 		blocky.update();
 		p4.update();
 		if (blocky.collisionBox.intersects(p4.collisionBox)) {
-			blocky.y = p4.y - blocky.height;
+			blocky.y = p4.y - blocky.collisionBox.height;
 			blocky.setApplyGravity(false);
-				blocky.setVelocity(0);
+			blocky.setVelocity(0);
 			blocky.setCanJump(true);
-			
 
 		} else {
 			blocky.setApplyGravity(true);
 
 		}
+
 	}
 
 	void updateMenuState() {
@@ -123,7 +122,8 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 	void drawGameState(Graphics z) {
 		z.drawImage(gamebackground, 0, 0, frameWidth, frameHeight, 0, y1, frameWidth, y2, this);
 		blocky.draw(z);
-		z.drawRect(blocky.collisionBox.x, blocky.collisionBox.y, blocky.collisionBox.width, blocky.collisionBox.height);
+		// z.drawRect(blocky.collisionBox.x, blocky.collisionBox.y,
+		// blocky.collisionBox.width, blocky.collisionBox.height);
 
 		p1.draw(z);
 		p2.draw(z);
