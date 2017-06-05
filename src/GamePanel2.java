@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
+	PlatformManager manager = new PlatformManager();
 	Timer timer;
 	final int MENU_STATE = 0;
 	final int GAME_STATE = 1;
@@ -19,11 +20,6 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 	int currentState = MENU_STATE;
 	Block blocky;
 	Font font;
-	Platform p1;
-	Platform p2;
-	Platform p3;
-	Platform p4;
-	Platform p5;
 	public static BufferedImage gamebackground;
 	public static BufferedImage AlienImg;
 	public static BufferedImage RubyImg;
@@ -37,11 +33,6 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 	GamePanel2(int fWidth, int fHeight) {
 		timer = new Timer(1000 / 60, this);
 		blocky = new Block(fWidth / 2, 725 - 32);
-		p1 = new Platform(200, 100);
-		p2 = new Platform(150, 250);
-		p3 = new Platform(165, 450);
-		p4 = new Platform(300, 600);
-		p5 = new Platform(400, 400);
 		font = new Font("Arial", Font.PLAIN, 36);
 		try {
 			gamebackground = ImageIO.read(this.getClass().getResourceAsStream("Game Background.jpg"));
@@ -87,18 +78,8 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 
 	void updateGameState() {
 		blocky.update();
-		p4.update();
-		if (blocky.collisionBox.intersects(p4.collisionBox)) {
-			blocky.y = p4.y - blocky.collisionBox.height;
-			blocky.setApplyGravity(false);
-			blocky.setVelocity(0);
-			blocky.setCanJump(true);
-
-		} else {
-			blocky.setApplyGravity(true);
-
-		}
-
+		manager.update();
+		manager.checkCollision(blocky);
 	}
 
 	void updateMenuState() {
@@ -124,12 +105,7 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 		blocky.draw(z);
 		// z.drawRect(blocky.collisionBox.x, blocky.collisionBox.y,
 		// blocky.collisionBox.width, blocky.collisionBox.height);
-
-		p1.draw(z);
-		p2.draw(z);
-		p3.draw(z);
-		p4.draw(z);
-		p5.draw(z);
+		manager.draw(z);
 
 	}
 
@@ -189,11 +165,6 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 		} else {
 			y1 += scrollSpeed;
 			y2 += scrollSpeed;
-		}
-		if (p1.y < 0) {
-			p1.y += scrollSpeed;
-		} else {
-			p1.isAlive = false;
 		}
 	}
 }

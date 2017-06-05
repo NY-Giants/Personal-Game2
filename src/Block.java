@@ -70,7 +70,7 @@ public class Block extends GameObject2 {
 
 	Block(int x, int y) {
 		super();
-		jumpPower = -25;
+		jumpPower = -20;
 		this.x = x;
 		this.y = y;
 		speed = 10;
@@ -85,7 +85,8 @@ public class Block extends GameObject2 {
 		System.out.println(y);
 		try {
 			QbertImg = ImageIO.read(this.getClass().getResourceAsStream("Qbert.png"));
-			width = QbertImg.getWidth();
+			//width = QbertImg.getWidth();
+			width = Platform.width;
 			height = QbertImg.getHeight();
 		} catch (Exception e) {
 			System.out.println("Block Image not found");
@@ -113,7 +114,7 @@ public class Block extends GameObject2 {
 			velocity = 0;
 		}
 		// collisionBox.setBounds(x, y + 50 + height - 1, width, 2);
-		collisionBox.setBounds(x, y, width, 120);
+		collisionBox.setBounds(x + (QbertImg.getWidth() - Platform.width)/2, y-1, width, 120);
 	}
 
 	void draw(Graphics z) {

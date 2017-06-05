@@ -7,12 +7,13 @@ public class Platform extends GameObject2 {
 	int velocity;
 	int gravity;
 	int ground;
+	static int width = 60;
 	boolean isAlive = true;
 
 	Platform(int x, int y) {
 		super();
 		this.x = x;
-		width = 60;
+		//width = 60;
 		height = 20;
 		this.y = y;
 		speed = 10;
