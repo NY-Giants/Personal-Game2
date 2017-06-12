@@ -39,6 +39,7 @@ public class Platform extends GameObject2 {
 		z.setColor(Color.BLUE);
 		z.fillRect(x, y, width, height);
 		z.drawRect(x, y, width, height);
+		z.drawRect(collisionBox.x, collisionBox.y, collisionBox.width, collisionBox.height);
 		super.draw(z);
 
 	}

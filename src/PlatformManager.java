@@ -4,11 +4,11 @@ import java.util.ArrayList;
 public class PlatformManager {
 ArrayList <Platform> platformList = new ArrayList<Platform>();
 public PlatformManager(){
-platformList.add(new Platform(200, 100));
-platformList.add(new Platform(150, 250));
-platformList.add(new Platform(195, 450));
+platformList.add(new Platform(0, 450));
+platformList.add(new Platform(150, 150));
+platformList.add(new Platform(350, 500));
 platformList.add(new Platform(100, 600));
-platformList.add(new Platform(400, 400));
+platformList.add(new Platform(400, 200));
 }
 public void draw(Graphics m){
 	for(Platform p: platformList){

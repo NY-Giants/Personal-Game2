@@ -1,5 +1,6 @@
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.util.ArrayList;
 
 public class GameObject2 {
 int x;

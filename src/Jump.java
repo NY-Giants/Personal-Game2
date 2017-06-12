@@ -16,6 +16,7 @@ public class Jump {
 		frame = new JFrame();
 		frame.setVisible(true);
 		frame.setSize(width, height);
+		frame.add(new Banner());
 		frame.add(gPanel);
 		frame.addKeyListener(gPanel);
 	}

@@ -73,7 +73,7 @@ public class Block extends GameObject2 {
 		jumpPower = -20;
 		this.x = x;
 		this.y = y;
-		speed = 10;
+		speed = 4;
 		upkey = false;
 		downkey = false;
 		rightkey = false;
@@ -97,10 +97,10 @@ public class Block extends GameObject2 {
 	void update() {
 
 		if (rightkey) {
-			x++;
+			x+= speed;
 		}
 		if (leftkey) {
-			x--;
+			x-= speed;
 		}
 		y += velocity;
 		if (applyGravity) {
@@ -113,8 +113,9 @@ public class Block extends GameObject2 {
 			canJump = true;
 			velocity = 0;
 		}
-		// collisionBox.setBounds(x, y + 50 + height - 1, width, 2);
-		collisionBox.setBounds(x + (QbertImg.getWidth() - Platform.width)/2, y-1, width, 120);
+		//collisionBox.setBounds(x, y + 50 + height - 1, width, 2);
+		collisionBox.setBounds(x+10, y-1, QbertImg.getWidth()/2, QbertImg.getHeight());
+
 	}
 
 	void draw(Graphics z) {
@@ -122,7 +123,7 @@ public class Block extends GameObject2 {
 		// z.fillRect(x, y, width, height);
 		// z.drawRect(x, y, width, height);
 		z.drawImage(QbertImg, x, y, width, height, null);
-
+		//z.drawRect(collisionBox.x, collisionBox.y, collisionBox.width, collisionBox.height);
 		super.draw(z);
 
 	}
