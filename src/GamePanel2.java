@@ -107,6 +107,9 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 		z.setColor(Color.RED);
 		z.drawString("SCORE", 100, 50);
 		z.setFont(font);
+		z.setColor(Color.RED);
+		z.drawString("Highscore", 300, 50);
+		z.setFont(font);
 		blocky.draw(z);
 		// z.drawRect(blocky.collisionBox.x, blocky.collisionBox.y,
 		// blocky.collisionBox.width, blocky.collisionBox.height);
