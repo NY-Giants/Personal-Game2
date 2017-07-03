@@ -8,7 +8,7 @@ platformList.add(new Platform(0, 450));
 platformList.add(new Platform(150, 150));
 platformList.add(new Platform(450, 500));
 platformList.add(new Platform(100, 600));
-platformList.add(new Platform(400, 100));
+platformList.add(new Platform(400, 195));
 }
 public void draw(Graphics m){
 	for(Platform p: platformList){

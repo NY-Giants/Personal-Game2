@@ -35,7 +35,7 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 	GamePanel2(int fWidth, int fHeight) {
 		timer = new Timer(1000 / 60, this);
 		blocky = new Block(fWidth / 2, 725 - 32);
-		font = new Font("Arial", Font.PLAIN, 38);
+		font = new Font("Arial", Font.PLAIN, 20);
 		try {
 			gamebackground = ImageIO.read(this.getClass().getResourceAsStream("Game Background.jpg"));
 			imageHeight = gamebackground.getHeight();
@@ -175,4 +175,5 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 			y2 += scrollSpeed;
 		}
 	}
+
 }

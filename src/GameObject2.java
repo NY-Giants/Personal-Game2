@@ -7,6 +7,7 @@ int x;
 int y;
 int width;
 int height;
+boolean isAlive;
 Rectangle collisionBox;
 	public GameObject2() {
 		 collisionBox = new Rectangle(x ,y, width, height);
