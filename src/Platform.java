@@ -24,14 +24,15 @@ public class Platform extends GameObject2 {
 	}
 
 	void update() {
+		y++;
 		velocity += gravity;
 		// y += velocity;
-		if (y > ground) {
-			y = ground;
-			System.out.println("on ground");
-			velocity = 0;
-
-		}
+//		if (y > ground) {
+//			y = ground;
+//			System.out.println("on ground");
+//			velocity = 0;
+//
+//		}
 		collisionBox.setBounds(x, y, width, 1);
 	}
 

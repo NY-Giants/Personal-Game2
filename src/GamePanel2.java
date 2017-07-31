@@ -16,6 +16,7 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 	PlatformManager manager = new PlatformManager();
 	Timer timer;
 	final int MENU_STATE = 0;
+	final int CHARACTER_STATE = 0;
 	final int GAME_STATE = 1;
 	final int END_STATE = 2;
 	int currentState = MENU_STATE;
@@ -24,9 +25,9 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 	public static BufferedImage gamebackground;
 	public static BufferedImage AlienImg;
 	public static BufferedImage RubyImg;
-	int imageHeight = 0;
-	int frameWidth = 0;
-	int frameHeight = 0;
+	static int imageHeight = 0;
+	static int frameWidth = 0;
+	static int frameHeight = 0;
 	int y1 = 0;
 	int y2 = 0;
 	int scrollSpeed = 5;
@@ -47,6 +48,7 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 		}
 		frameHeight = fHeight;
 		frameWidth = fWidth;
+		System.out.println(frameWidth);
 	}
 
 	@Override
@@ -58,6 +60,7 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 		} else if (currentState == END_STATE) {
 			updateEndState();
 		}
+			
 		moveBackground();
 		repaint();
 
