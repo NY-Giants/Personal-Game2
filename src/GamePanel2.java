@@ -106,7 +106,7 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 	}
 
 	void drawGameState(Graphics z) {
-		z.drawImage(gamebackground, 0, 100, frameWidth, frameHeight, 0, y1, frameWidth, y2, this);
+		//z.drawImage(gamebackground, 0, 100, frameWidth, frameHeight, 0, y1, frameWidth, y2, this);
 		z.setColor(Color.RED);
 		z.drawString("SCORE", 100, 50);
 		z.setFont(font);

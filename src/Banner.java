@@ -5,7 +5,8 @@ import javax.swing.JPanel;
 
 public class Banner extends JPanel {
 	ArrayList<GameObject2> objects;
-	private int score = 0;
+	public static int score = 0;
+	
 	Banner(){
 		JLabel scoreexample = new JLabel("score");
 		JLabel hiscore = new JLabel("hiscore");
@@ -22,7 +23,7 @@ public class Banner extends JPanel {
 					if((o1 instanceof Block && o2 instanceof Platform) ||
 					   (o2 instanceof Block && o1 instanceof Platform)){
 						score++;
-						System.out.println(score);
+						System.out.println(score +"score");
 						o1.isAlive = true;
 						o2.isAlive = true;
 			          		}
