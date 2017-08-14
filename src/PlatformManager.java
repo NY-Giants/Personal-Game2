@@ -2,8 +2,9 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class PlatformManager {
+public class PlatformManager  {
 ArrayList <Platform> platformList = new ArrayList<Platform>();
+static boolean hasStarted = false;
 public PlatformManager(){
 Random r1 = new Random();
 for(int i = 0;i<=100000 ; i+= (r1.nextInt(251)+50)){
@@ -61,13 +62,21 @@ public boolean checkCollision(Block blocky){
 			blocky.setVelocity(0);
 			blocky.setCanJump(true);
 			return true;
-
+		
 		} else {
 			blocky.setApplyGravity(true);
 			
 
 		}
 	}
+	if(blocky.y < 673) {
+		hasStarted = true;
+		
+	}
+	if(hasStarted == true && blocky.y == 673) {
+		System.out.println("ererh");
+	}
 	return false;
+	
 }
 }
