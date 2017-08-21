@@ -6,13 +6,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class GamePanel2 extends JPanel implements ActionListener, KeyListener {	
+public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 	PlatformManager manager = new PlatformManager();
 	Timer timer;
 	final int MENU_STATE = 0;
@@ -32,11 +31,17 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 	int y2 = 0;
 	int scrollSpeed = 5;
 	int score = 0;
-	
+	boolean isAlive = true;
+	long timestart = System.nanoTime();
+	long timedeath = System.nanoTime();
+	long currenttime = System.nanoTime();
+	static boolean hasStarted = false;
+
 	GamePanel2(int fWidth, int fHeight) {
 		timer = new Timer(1000 / 60, this);
 		blocky = new Block(fWidth / 2, 725 - 32);
 		font = new Font("Arial", Font.PLAIN, 20);
+		blocky.isAlive = true;
 		try {
 			gamebackground = ImageIO.read(this.getClass().getResourceAsStream("Game Background.jpg"));
 			imageHeight = gamebackground.getHeight();
@@ -48,7 +53,8 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 		}
 		frameHeight = fHeight;
 		frameWidth = fWidth;
-		System.out.println(frameWidth);
+		blocky.y = 663;
+
 	}
 
 	@Override
@@ -60,7 +66,7 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 		} else if (currentState == END_STATE) {
 			updateEndState();
 		}
-			
+
 		moveBackground();
 		repaint();
 
@@ -68,6 +74,8 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 
 	void startGame() {
 		timer.start();
+		timestart = System.nanoTime();
+
 	}
 
 	public void paintComponent(Graphics z) {
@@ -85,6 +93,24 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 		blocky.update();
 		manager.update();
 		manager.checkCollision(blocky);
+
+		if (blocky.y == 693) {
+
+			hasStarted = true;
+
+		}
+		if (hasStarted == true && blocky.y == 693) {
+			blocky.isAlive = false;
+			timedeath = System.nanoTime();
+			currentState = END_STATE;
+			System.out.println("Your score is " + (timedeath - timestart) / 1e6);
+		}
+		if (blocky.isAlive) {
+			currenttime = System.nanoTime();
+			System.out.println("Your score is " + (currenttime - timestart) / 1e6);
+		}
+		double difference = (timedeath - timestart) / 1e6;
+
 	}
 
 	void updateMenuState() {
@@ -106,7 +132,8 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 	}
 
 	void drawGameState(Graphics z) {
-		//z.drawImage(gamebackground, 0, 100, frameWidth, frameHeight, 0, y1, frameWidth, y2, this);
+		// z.drawImage(gamebackground, 0, 100, frameWidth, frameHeight, 0, y1,
+		// frameWidth, y2, this);
 		z.setColor(Color.RED);
 		z.drawString("SCORE", 100, 50);
 		z.setFont(font);
@@ -117,7 +144,7 @@ public class GamePanel2 extends JPanel implements ActionListener, KeyListener {
 		// z.drawRect(blocky.collisionBox.x, blocky.collisionBox.y,
 		// blocky.collisionBox.width, blocky.collisionBox.height);
 		manager.draw(z);
-		
+
 	}
 
 	void drawEndState(Graphics z) {

@@ -81,11 +81,9 @@ public class Block extends GameObject2 {
 		gravity = 1;
 		velocity = 0;
 		ground = y;
-		System.out.println(x);
-		System.out.println(y);
 		try {
 			QbertImg = ImageIO.read(this.getClass().getResourceAsStream("Qbert.png"));
-			//width = QbertImg.getWidth();
+			// width = QbertImg.getWidth();
 			width = Platform.width;
 			height = QbertImg.getHeight();
 		} catch (Exception e) {
@@ -97,10 +95,10 @@ public class Block extends GameObject2 {
 	void update() {
 
 		if (rightkey) {
-			x+= speed;
+			x += speed;
 		}
 		if (leftkey) {
-			x-= speed;
+			x -= speed;
 		}
 		y += velocity;
 		if (applyGravity) {
@@ -113,8 +111,8 @@ public class Block extends GameObject2 {
 			canJump = true;
 			velocity = 0;
 		}
-		//collisionBox.setBounds(x, y + 50 + height - 1, width, 2);
-		collisionBox.setBounds(x+10, y-1, QbertImg.getWidth()/2, QbertImg.getHeight());
+		// collisionBox.setBounds(x, y + 50 + height - 1, width, 2);
+		collisionBox.setBounds(x + 10, y - 1, QbertImg.getWidth() / 2, QbertImg.getHeight());
 
 	}
 
@@ -123,18 +121,19 @@ public class Block extends GameObject2 {
 		// z.fillRect(x, y, width, height);
 		// z.drawRect(x, y, width, height);
 		z.drawImage(QbertImg, x, y, width, height, null);
-		//z.drawRect(collisionBox.x, collisionBox.y, collisionBox.width, collisionBox.height);
+		// z.drawRect(collisionBox.x, collisionBox.y, collisionBox.width,
+		// collisionBox.height);
 		super.draw(z);
 
 	}
 
 	void jump() {
-		System.out.println(canJump + " canJump ");
+
 		if (canJump) {
 			applyGravity = true;
 			velocity = jumpPower;
 
 		}
-		System.out.println(velocity + " velocity ");
+
 	}
 }
